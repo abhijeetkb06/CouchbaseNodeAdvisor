@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CouchbaseNodeAdvisor:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CouchbaseNodeAdvisor_jar</output-path>
+    <root id="archive" name="CouchbaseNodeAdvisor.jar">
+      <element id="module-output" name="CouchbaseNodeAdvisor" />
+    </root>
+  </artifact>
+</component>
