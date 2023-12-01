@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
  *
  * @Author: Abhijeet Behera
  */
-public class CouchbaseNodeAdvisor extends JFrame {
+public class Main extends JFrame {
     private JSlider ramUsageSlider;
     private JTextField currentlyUsedRamPerNodeField;
     private JTextField ramAllocatedPerNodeField;
@@ -22,13 +22,35 @@ public class CouchbaseNodeAdvisor extends JFrame {
 
     private JButton clearButton; // New button for clearing fields
 
-    public CouchbaseNodeAdvisor() {
+    public Main() {
 
-        setTitle("Couchbase Node Advisor");
+        setTitle("Couchbase Node Growth Insight");
 
         setSize(600, 700); // Adjust the size as needed
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(9, 2, 10, 10)); // Changed to GridLayout with 9 rows and 2 columns
+
+        try {
+/*             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");*/
+            UIManager.setLookAndFeel(
+                    UIManager.getCrossPlatformLookAndFeelClassName());
+
+         /*   UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName());*/
+        }
+        catch (ClassNotFoundException e) {
+
+            e.printStackTrace();
+        }
+        catch (InstantiationException e2) {
+            e2.printStackTrace();
+        }
+        catch (IllegalAccessException e3) {
+            e3.printStackTrace();
+        }
+        catch (UnsupportedLookAndFeelException e4) {
+            e4.printStackTrace();
+        }
 
         add(new JLabel("RAM Usage per Node (GB):"));
         currentlyUsedRamPerNodeField = new JTextField("236");
@@ -77,6 +99,7 @@ public class CouchbaseNodeAdvisor extends JFrame {
         add(new JLabel("Total Node Adjustment(Data/Index):"));
         moreNodesForDesiredRamField = new JTextField();
         moreNodesForDesiredRamField.setColumns(10);
+        moreNodesForDesiredRamField.setEditable(false);
         add(moreNodesForDesiredRamField);
 
         // Calculate the RAM usage
@@ -124,7 +147,7 @@ public class CouchbaseNodeAdvisor extends JFrame {
 
             ramUsageLabel.setText(ramUsageSlider.getValue() + "%");
 
-            if (ramUsageSlider.getValue() <= 60) {
+            if (ramUsageSlider.getValue() <= 70) {
                 healthLabel.setText("Healthy");
                 healthLabel.setForeground(new Color(0, 100, 0)); // Dark green
                 ramUsageLabel.setForeground(new Color(0, 100, 0)); // Dark green
@@ -159,7 +182,7 @@ public class CouchbaseNodeAdvisor extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            CouchbaseNodeAdvisor sizer = new CouchbaseNodeAdvisor();
+            Main sizer = new Main();
             sizer.setVisible(true);
         });
     }
